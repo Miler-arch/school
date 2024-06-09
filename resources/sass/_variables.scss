@@ -1,0 +1,48 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+.btn-light-success{
+    background-color: #11ba5a;
+    color: #fff;
+    border-color: #11ba5a;
+}
+
+.btn-light-success:hover{
+    background-color: #0f9d4b;
+    color: #fff;
+    border-color: #0f9d4b;
+}
+
+.btn-light-warning{
+    background-color: #ffbb44;
+    color: #fff;
+    border-color: #ffbb44;
+}
+
+.btn-light-warning:hover{
+    background-color: #ffaa22;
+    color: #fff;
+    border-color: #ffaa22;
+}
+
+.btn-light-danger{
+    background-color: #ff5b5b;
+    color: #fff;
+    border-color: #ff5b5b;
+}
+
+.btn-light-danger:hover{
+    background-color: #ff3333;
+    color: #fff;
+    border-color: #ff3333;
+}
+
+.required::after{
+    content: " *";
+    color: rgb(247, 57, 57);
+}
