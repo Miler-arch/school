@@ -25,6 +25,7 @@ class Course extends Model
     public function subject(){
         return $this->belongsTo(Subject::class, 'subject_id');
     }
+
     public function courseSetting(){
         return $this->belongsTo(CourseSetting::class, 'course_setting_id');
     }

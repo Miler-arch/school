@@ -22,15 +22,25 @@ class CourseController extends Controller
     }
     public function store(StoreRequest $request)
     {
-        try{
+        try {
             $data = $request->except('_token');
-            auth()->user()->courses()->create($data);
+
+            // Assuming you need to create one course for each selected setting
+            foreach ($data['course_setting_id'] as $courseSettingId) {
+                auth()->user()->courses()->create([
+                    'teacher_id' => $data['teacher_id'],
+                    'subject_id' => $data['subject_id'],
+                    'course_setting_id' => $courseSettingId,
+                ]);
+            }
+
             return response()->json(['message' => 'Curso creado correctamente'], 201);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
             return response()->json(['error' => 'Error al crear el curso'], 500);
         }
     }
+
     public function edit(Course $course)
     {
 

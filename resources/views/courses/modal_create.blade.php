@@ -15,21 +15,6 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
-                            <x-adminlte-select name="course_setting_id" label="Grado" igroup-size="md" label-class="required" class="form-select">
-                                <x-slot name="prependSlot">
-                                    <div class="input-group-text">
-                                        <i class="fas fa-sort-alpha-up"></i>
-                                    </div>
-                                </x-slot>
-                                <option selected disabled>Seccione una opción</option>
-                                @foreach ($courses_settings as $course_setting)
-                                    <option value="{{ $course_setting->id }}">{{ $course_setting->degree }} "{{ $course_setting->parallel }}" {{ $course_setting->level }}</option>
-                                @endforeach
-                            </x-adminlte-select>
-                            <div id="course_setting_id-error">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
                             <x-adminlte-select name="teacher_id" label="Profesor" igroup-size="md" label-class="required" class="form-select">
                                 <x-slot name="prependSlot">
                                     <div class="input-group-text">
@@ -59,6 +44,24 @@
                             <div id="subject_id-error">
                             </div>
                         </div>
+                        <div class="col-md-12">
+                        <label class="required">Grado</label>
+                        <div class="input-group mb-3">
+                            <div class="row">
+                                @foreach ($courses_settings as $course_setting)
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="course_setting_id[]" value="{{ $course_setting->id }}" id="course_setting_{{ $course_setting->id }}">
+                                            <label class="form-check-label" for="course_setting_{{ $course_setting->id }}">
+                                                {{ $course_setting->degree }} "{{ $course_setting->parallel }}" {{ $course_setting->level }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div id="course_setting_id-error" class="text-danger"></div>
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

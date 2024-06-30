@@ -46,3 +46,30 @@ $line-height-base: 1.6;
     content: " *";
     color: rgb(247, 57, 57);
 }
+
+.form-check-label {
+    margin-left: 10px; /* Increased left margin for better alignment */
+    display: block; /* Ensures label uses full width for better clickability */
+}
+
+input[type="checkbox"] {
+    padding: 8px;
+    cursor: pointer; /* Ensures the cursor indicates an interactive element */
+}
+
+.form-check-input {
+    margin-right: 10px; /* Ensures spacing between checkbox and label */
+}
+
+#course_setting_ids-error {
+    margin-top: 10px; /* Separates error message from checkboxes */
+    padding-left: 15px; /* Aligns error message with checkboxes */
+}
+
+/* Additional responsive considerations */
+@media (max-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
