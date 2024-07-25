@@ -20,14 +20,8 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasRole($request->role)) {
-            flash()->option('timeout', 2500)->addSuccess('Bienvenido ' . $user->name, '¡Hola!');
-            return redirect('/users');
-        } else {
-            Auth::logout();
-            flash()->option('timeout', 2500)->addError('Seleccione su rol asignado.', 'Error');
-            return redirect()->back();
-        }
+        flash()->option('timeout', 2500)->addSuccess('Bienvenido ' . $user->name, '¡Hola!');
+        return redirect('/users');
     }
 
     protected $redirectTo = '/users';

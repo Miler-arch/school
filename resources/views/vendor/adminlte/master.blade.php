@@ -104,7 +104,7 @@
 
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
-    
+
     <script src="{{asset('assets/js/datatable.js')}}"></script>
 
 </body>

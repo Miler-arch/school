@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseSetting\StoreRequest;
 use App\Models\CourseSetting;
 use Illuminate\Http\Request;
 
@@ -9,17 +10,25 @@ class CourseSettingController extends Controller
 {
     public function index()
     {
-        $courses_settings = CourseSetting::all();
-        
+        $courses_settings = CourseSetting::orderBy('parallel', 'asc')->get();
         return view('courses-settings.index', compact('courses_settings'));
     }
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        try{
-            CourseSetting::create($request->all());
-            return redirect()->route('courses_settings.index')->with('success', 'Curso creado correctamente');
-        }catch(\Exception $exception){
-            return redirect()->route('courses_settings.index')->with('error', 'Ocurrió un error');
+        try {
+            $course = CourseSetting::firstOrCreate([
+                'parallel' => $request['parallel'],
+                'degree' => $request['degree'],
+                'level' => $request['level'],
+            ]);
+
+            if ($course->wasRecentlyCreated) {
+                return response()->json(['success' => true, 'message' => 'Curso creado correctamente']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'El curso ya existe']);
+            }
+        } catch (\Exception $exception) {
+            return response()->json(['success' => false, 'message' => 'Ocurrió un error']);
         }
     }
     public function show(CourseSetting $courses_setting)

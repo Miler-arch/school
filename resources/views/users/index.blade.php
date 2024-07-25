@@ -116,8 +116,6 @@
     $("#form").on('submit', function(e) {
         e.preventDefault();
 
-        $("#form button[type=submit]").prop('disabled', true);
-
         $.ajax({
             type: "POST",
             url: "{{ route('users.store') }}",
@@ -137,7 +135,6 @@
                 }, 500);
             },
             error: function(xhr, status, error) {
-                $("#form button[type=submit]").prop('disabled', false);
 
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;

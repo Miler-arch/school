@@ -22,8 +22,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'code' => 'required|string|max:255',
+            'name' => 'required|string|unique:subjects',
+            'code' => 'required|string|unique:subjects',
             'knowledge' => 'required|string|max:255',
         ];
     }
@@ -38,10 +38,10 @@ class StoreRequest extends FormRequest
         return [
             'name.required' => 'El nombre es requerido',
             'name.string' => 'El nombre debe ser un texto',
-            'name.max' => 'El nombre no debe exceder los 255 caracteres',
+            'name.unique' => 'El nombre ya está en uso',
             'code.required' => 'El código es requerido',
             'code.string' => 'El código debe ser un texto',
-            'code.max' => 'El código no debe exceder los 255 caracteres',
+            'code.unique' => 'El código ya está en uso',
             'knowledge.required' => 'El conocimiento es requerido',
             'knowledge.string' => 'El conocimiento debe ser un texto',
             'knowledge.max' => 'El conocimiento no debe exceder los 255 caracteres',

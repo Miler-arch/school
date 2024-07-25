@@ -25,7 +25,6 @@ class CourseController extends Controller
         try {
             $data = $request->except('_token');
 
-            // Assuming you need to create one course for each selected setting
             foreach ($data['course_setting_id'] as $courseSettingId) {
                 auth()->user()->courses()->create([
                     'teacher_id' => $data['teacher_id'],

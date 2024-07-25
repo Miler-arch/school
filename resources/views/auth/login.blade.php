@@ -26,7 +26,7 @@
                             @enderror
                         </div>
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="role" class="form-label">{{ __('Seleccionar Rol') }}</label>
                             <div class="form-check">
                                 @foreach($roles as $role)
@@ -36,7 +36,7 @@
                                     </label><br>
                                 @endforeach
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">{{ __('Iniciar Sesión') }}</button>

@@ -49,29 +49,34 @@
     $("#form").on('submit', function(e) {
         e.preventDefault();
 
-        $("#form button[type=submit]").prop('disabled', true);
-
         $.ajax({
             type: "POST",
             url: "{{ route('courses_settings.store') }}",
             data: $("#form").serialize(),
             success: function(response) {
-                $("#modal-create").modal('hide');
-                Swal.fire({
-                    icon: 'success',
-                    title: '¡Éxito!',
-                    text: 'La configuración del curso ha sido registrado correctamente.',
-                    showConfirmButton: false,
-                });
-                $("#form")[0].reset();
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Éxito!',
+                        text: response.message,
+                        showConfirmButton: false,
+                    });
 
-                setTimeout(function() {
-                    location.reload();
-                }, 500);
+                    $("#form")[0].reset();
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 500);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: '¡Error!',
+                        text: response.message,
+                        showConfirmButton: true,
+                    });
+                }
             },
             error: function(xhr, status, error) {
-                $("#form button[type=submit]").prop('disabled', false);
-
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
                     $.each(errors, function(key, value) {
